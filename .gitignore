@@ -1,0 +1,5 @@
+.vscode
+server/.vscode
+web/.vscode
+server/node_modules
+web/node_modules
