@@ -1,9 +1,11 @@
-import { AppBar, styled, Toolbar, Typography, IconButton, InputBase, alpha, Box, Badge, Avatar } from '@mui/material';
+import { AppBar, styled, Toolbar, Typography, IconButton, InputBase, alpha, Box, Badge, Avatar, List, ListItem, ListItemButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import ChatIcon from '@mui/icons-material/Chat';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import React from 'react';
+import CloseIcon from '@mui/icons-material/Close';
+import React, { useState } from 'react';
+import { makeStyles } from '@mui/styles';
 
 const CustomToolbar = styled(Toolbar)(({ theme }) => ({
     display: 'flex',
@@ -47,7 +49,6 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(3)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -67,21 +68,45 @@ const Icons = styled(Box)(({ theme }) => {
     },}
 });
 
+const styles = makeStyles(theme => ({
+    searchPopup: {
+        position: 'absolute'
+    },
+}));
+
+const searchResult = ['person 1', 'person 1', 'person 1', 'person 1'];
+
 const Navbar = () => {
+    const [searchFocus, setSearchFocus] = useState(false);
+
+    // const removeSearchResultItem = () => {}
+
     return (
         <AppBar flex={1} position="fixed">
             <CustomToolbar>
-                <Box display="flex" alignItems="center" flexGrow={1}>
+                <Box display="flex" alignItems="center" flexGrow={1} position="relative">
                     <Typography variant="h6" sx={{ display: {xs: "none", sm: "block"} }}>Social Network</Typography>
                     <IconButton color="inherit" size="large" aria-label="menu" sx={{ mr: 1, display: {sm: "none"} }}>
                         <MenuIcon />
                     </IconButton>
-                    <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase placeholder="Search" inputProps={{ 'aria-label': 'search' }} />
-                    </Search>
+                    <Box className={searchFocus ? styles.searchPopup : ""}>
+                        <Search>
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase placeholder="Search" onFocus={() => setSearchFocus(true)} />
+                        </Search>
+                        <List>
+                            {searchResult.map(item => (
+                                <ListItem key={item}>
+                                    <ListItemButton>{item}<IconButton edge="end" disableRipple>
+                                        <CloseIcon />
+                                    </IconButton></ListItemButton>
+                                    
+                                </ListItem>
+                            ))}
+                        </List>
+                    </Box>
                 </Box>
                 <Icons>
                     <IconButton size="large" color="inherit">
@@ -94,7 +119,7 @@ const Navbar = () => {
                             <NotificationsIcon />
                         </Badge>
                     </IconButton>
-                    <IconButton aria-controls="" aria-haspopup="true" color="inherit" disableRipple>
+                    <IconButton aria-controls="" aria-haspopup="true" color="inherit" disableRipple className="Mui-focusVisible">
                         <Avatar>Đ</Avatar>
                     </IconButton>
                 </Icons>
