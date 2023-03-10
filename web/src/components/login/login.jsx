@@ -9,7 +9,8 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const login = () => {
+    const login = (e) => {
+        e.preventDefault();
         window.location.href = 'http://localhost:3000/home';
     }
 
