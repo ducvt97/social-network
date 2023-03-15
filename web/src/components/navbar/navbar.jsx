@@ -3,6 +3,7 @@ import { InputText } from 'primereact/inputtext';
 
 import './navbar.css';
 import { Button } from 'primereact/button';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [searchOpen, setSearchOpen] = useState(false);
@@ -10,7 +11,7 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="navbar__left position-relative">
-                <div className="mr-3">Social Network</div>
+                <Link to="/home"><i className="pi pi-globe text-indigo-500 mr-2" style={{ fontSize: '2.5rem', cursor: 'pointer' }} ></i></Link>
                 <div className={`search-field ${searchOpen ? 'search-open' : ''}`}>
                     <div className="flex">
                         {searchOpen ? <Button className="mr-2" icon="pi pi-arrow-left" rounded text onClick={() => setSearchOpen(false)} /> : null}
