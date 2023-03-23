@@ -1,7 +1,7 @@
 import './App.css';
-import Login from './components/login/login';
+import Login from './scenes/login/login';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from './components/home/home';
+import Home from './scenes/home/home';
 
 const router = createBrowserRouter([
     {

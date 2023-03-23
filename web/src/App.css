@@ -5,7 +5,24 @@
   margin: auto;
 }
 
+.app-container {
+  margin-top: 5rem;
+}
+.user-link {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
 /* Override Primefaces CSS */
 .p-inputtext {
   width: 100%;
+}
+.pi.md {
+  font-size: 1.25rem;
+}
+.pi.xmd {
+  font-size: 1.5rem;
+}
+.pi.lg {
+  font-size: 2rem;
 }
