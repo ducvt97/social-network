@@ -28,7 +28,7 @@ const Navbar = () => {
                         {searchOpen ? <Button className="mr-2" icon="pi pi-arrow-left" rounded text onClick={() => setSearchOpen(false)} /> : null}
                         <span className={`w-full ${!searchOpen ? "p-input-icon-left" : ""}`}>
                             {!searchOpen ? <i className="pi md pi-search" /> : null}
-                            <InputText placeholder="Search" onFocus={() => setSearchOpen(true)} />
+                            <InputText className="w-full" placeholder="Search" onFocus={() => setSearchOpen(true)} />
                         </span>
                     </div>
                     {searchOpen ?

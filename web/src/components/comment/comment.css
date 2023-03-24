@@ -1,0 +1,16 @@
+.comment {
+    display: flex;
+    padding: 0 1rem;
+    margin: 0.5rem 0;
+}
+.comment__box {
+    padding: 0.75rem 1rem;
+    background-color: var(--surface-100);
+    border-radius: 8px;
+}
+.comment__action {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.25rem;
+    padding: 0 1rem;
+}

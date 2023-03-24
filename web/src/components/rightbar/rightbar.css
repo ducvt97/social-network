@@ -1,0 +1,9 @@
+.right-bar {
+    width: 360px;
+    display: none;
+}
+@media only screen and (min-width: 1284px) {
+    .right-bar {
+        display: flex;
+    }
+}

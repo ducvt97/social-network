@@ -19,7 +19,7 @@ const Login = () => {
             <div className="text-5xl sm:text-6xl text-indigo-400 mb-3">Social Network</div>
             <form className="w-full" onSubmit={login}>
                 <span className="p-float-label">
-                    <InputText id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <InputText className="w-full" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
                     <label htmlFor="username">Username</label>
                 </span>
                 <span className="p-float-label">

@@ -5,11 +5,38 @@ import { Button } from 'primereact/button';
 import './post.css';
 import { Avatar } from 'primereact/avatar';
 import { Link } from 'react-router-dom';
+import Comment from '../comment/comment';
+import { InputText } from 'primereact/inputtext';
+import { useFormik } from 'formik';
+
+const comments = [
+    {author: 'Person 2', content: 'Comment test'},
+    {author: 'Person 2', content: 'Comment test'},
+    {author: 'Person 2', content: 'Comment test'}
+]
 
 const Post = ({ author, time, caption, picture }) => {
     const [commentOpen, setCommentOpen] = useState(false),
         [liked, setLiked] = useState(false);
 
+    const commentForm = useFormik({
+        initialValues: {
+            comment: ''
+        },
+        validate: (data) => {
+            let errors = {};
+
+            if (!data.comment) {
+                errors.comment = 'Comment empty.';
+            }
+
+            return errors;
+        },
+        onSubmit: (data) => {
+            console.log(data);
+            commentForm.resetForm();
+        }
+    });
     return (
         <div className="post">
             <div className="post__header">
@@ -18,7 +45,6 @@ const Post = ({ author, time, caption, picture }) => {
                     <Link to="#" className="user-link">{author}</Link>
                     <div className="mt-1">{time}</div>
                 </div>
-                
             </div>
             <div className="post__content">
                 <div className="content__caption">{caption}</div>
@@ -32,7 +58,21 @@ const Post = ({ author, time, caption, picture }) => {
                 <Button className="mr-2" icon="pi md pi-send" rounded text />
             </div>
             {commentOpen ? 
-                <div className="post__comments"></div>
+                <div className="post__comments">
+                    <div className="post__comment">
+                        <Avatar className="mr-2" icon="pi pi-user" size="large" shape="circle" style={{ cursor: 'pointer' }} />
+                        <form onSubmit={commentForm.handleSubmit} className="flex-grow-1">
+                            <InputText 
+                                value={commentForm.values.comment} 
+                                onChange={(e) => {
+                                    commentForm.setFieldValue('comment', e.target.value);
+                                }}
+                                type="text" className="p-inputtext-lg w-full" placeholder="Write your comment..."
+                            />
+                        </form>
+                    </div>
+                    {comments.map((cmt, index) => <Comment author={cmt.author} content={cmt.content} key={index} />)}
+                </div>
             : null}
         </div>
     )

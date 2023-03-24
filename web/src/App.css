@@ -1,21 +1,45 @@
 .app {
   width: 100%;
   height: 100%;
-  max-width: 1500px;
   margin: auto;
 }
 
 .app-container {
   margin-top: 5rem;
+  display: flex;
 }
+
+.content-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+.content-field {}
+
 .user-link {
   font-size: 1.25rem;
   font-weight: 500;
 }
 
+.link {
+  color: var(--indigo-400);
+}
+.link.active {
+  color: var(--indigo-700);
+  font-weight: 600;
+}
+.sub-link {
+  color: var(--indigo-200);
+}
+.link:hover, .sub-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 /* Override Primefaces CSS */
 .p-inputtext {
-  width: 100%;
+  flex-grow: 1;
 }
 .pi.md {
   font-size: 1.25rem;
